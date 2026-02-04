@@ -153,6 +153,9 @@ p {
     gap: 2rem;
     justify-content: center;
     margin-top: 2rem;
+    position: relative;
+    min-height: 120px;
+    width: 100%;
 }
 
 .choice-btn {
@@ -162,9 +165,10 @@ p {
     border-radius: 50px;
     background: transparent;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     font-family: 'Georgia', serif;
     min-width: 120px;
+    position: relative;
 }
 
 .yes-btn {
@@ -180,32 +184,15 @@ p {
 }
 
 .no-btn {
-    color: #666;
-    border-color: #666;
-    cursor: not-allowed;
-    opacity: 0.5;
-    position: relative;
+    color: #dc143c;
+    border-color: #dc143c;
+    cursor: pointer;
+    opacity: 0.8;
 }
 
 .no-btn:hover {
-    transform: translateX(10px);
-    opacity: 0.3;
-}
-
-.no-btn::after {
-    content: "(unavailable)";
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.8rem;
-    color: #8b0000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.no-btn:hover::after {
-    opacity: 1;
+    transform: scale(0.95);
+    opacity: 0.6;
 }
 
 .hidden {
