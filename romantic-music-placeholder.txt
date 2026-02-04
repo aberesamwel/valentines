@@ -1,0 +1,3 @@
+# This is a placeholder for romantic-music.mp3
+# You need to add an actual MP3 file with this name for the music to work
+# The website will still function without it, just without sound

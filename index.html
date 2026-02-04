@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="start-overlay">
+        <div class="start-content">
+            <h1>Click to Begin</h1>
+            <p>A moment crafted for you</p>
+        </div>
+    </div>
+
+    <audio id="ambient-music" loop>
+        <source src="romantic-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <main>
+        <section id="intro" class="section">
+            <div class="content">
+                <h1 class="fade-in">In the quiet moments</h1>
+                <p class="fade-in delay-1">when the world slows down</p>
+            </div>
+        </section>
+
+        <section id="memories" class="section">
+            <div class="content">
+                <h2 class="fade-in">I think of you</h2>
+                <p class="fade-in delay-1">Every shared glance, every whispered word</p>
+                <p class="fade-in delay-2">Building something beautiful between us</p>
+            </div>
+        </section>
+
+        <section id="present" class="section">
+            <div class="content">
+                <h2 class="fade-in">This moment</h2>
+                <p class="fade-in delay-1">Is ours to hold</p>
+                <p class="fade-in delay-2">Sacred and infinite</p>
+            </div>
+        </section>
+
+        <section id="revelation" class="section">
+            <div class="content">
+                <div id="final-message" class="fade-in">
+                    <h2>My dearest,</h2>
+                    <p>In a world of endless noise, you are my silence.</p>
+                    <p>In a life of constant motion, you are my stillness.</p>
+                    <p>Today and always, you are my heart's truest home.</p>
+                    <div class="signature">Forever yours</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="question" class="section">
+            <div class="content">
+                <div id="valentine-question" class="fade-in">
+                    <h2>Will you be my Valentine?</h2>
+                    <div class="button-container">
+                        <button id="yes-btn" class="choice-btn yes-btn">Yes! ❤️</button>
+                        <button id="no-btn" class="choice-btn no-btn">No</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="valentine.js"></script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: #0a0a0a;
+    color: #f5f5f5;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+#start-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #1a0000 0%, #000000 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    cursor: pointer;
+    transition: opacity 1s ease;
+}
+
+.start-content {
+    text-align: center;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.start-content h1 {
+    font-size: 3rem;
+    color: #d4af37;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.start-content p {
+    font-size: 1.2rem;
+    color: #8b0000;
+    font-style: italic;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+}
+
+.section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+}
+
+.section:nth-child(odd) {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 100%);
+}
+
+.section:nth-child(even) {
+    background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+}
+
+.content {
+    max-width: 800px;
+    text-align: center;
+    z-index: 2;
+}
+
+h1, h2 {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    color: #d4af37;
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+    font-weight: 300;
+}
+
+p {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #cccccc;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.3s; }
+.delay-2 { transition-delay: 0.6s; }
+
+#final-message {
+    background: rgba(139, 0, 0, 0.1);
+    padding: 3rem;
+    border-radius: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+#final-message h2 {
+    color: #8b0000;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+#final-message p {
+    font-size: 1.3rem;
+    color: #f5f5f5;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+.signature {
+    margin-top: 3rem;
+    font-size: 1.1rem;
+    color: #d4af37;
+    font-style: italic;
+    text-align: right;
+}
+
+#valentine-question {
+    background: rgba(139, 0, 0, 0.15);
+    padding: 3rem;
+    border-radius: 15px;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+#valentine-question h2 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    color: #d4af37;
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+}
+
+.button-container {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.choice-btn {
+    padding: 1rem 2rem;
+    font-size: 1.3rem;
+    border: 2px solid;
+    border-radius: 50px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif;
+    min-width: 120px;
+}
+
+.yes-btn {
+    color: #d4af37;
+    border-color: #d4af37;
+}
+
+.yes-btn:hover {
+    background: #d4af37;
+    color: #000;
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+}
+
+.no-btn {
+    color: #666;
+    border-color: #666;
+    cursor: not-allowed;
+    opacity: 0.5;
+    position: relative;
+}
+
+.no-btn:hover {
+    transform: translateX(10px);
+    opacity: 0.3;
+}
+
+.no-btn::after {
+    content: "(unavailable)";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: #8b0000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.no-btn:hover::after {
+    opacity: 1;
+}
+
+.hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    h1, h2 { font-size: 2.5rem; }
+    p { font-size: 1.2rem; }
+    .start-content h1 { font-size: 2rem; }
+    #final-message { padding: 2rem; }
+}
