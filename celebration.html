@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Said Yes! 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(45deg, #1a0000, #2d0a0a, #1a0000);
+            min-height: 100vh;
+            color: #f5f5f5;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .celebration-container {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 5rem);
+            color: #d4af37;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 40px rgba(212, 175, 55, 0.5); }
+            to { text-shadow: 0 0 60px rgba(212, 175, 55, 0.8); }
+        }
+
+        .romantic-message {
+            font-size: 1.5rem;
+            color: #f5f5f5;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .stickers-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .sticker {
+            position: absolute;
+            font-size: 3rem;
+            animation: float 4s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        .sticker:nth-child(even) {
+            animation-direction: reverse;
+            animation-duration: 5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .music-controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+        }
+
+        .music-btn {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .music-btn:hover {
+            background: #d4af37;
+            color: #1a0000;
+            transform: scale(1.1);
+        }
+
+        .love-quotes {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+            max-width: 500px;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #f5f5f5;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .quote:nth-child(2) { animation-delay: 1s; }
+        .quote:nth-child(3) { animation-delay: 2s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: transparent;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: #d4af37;
+            color: #1a0000;
+        }
+
+        .celebration-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .romantic-message {
+                font-size: 1.2rem;
+                padding: 0 1rem;
+            }
+            
+            .love-quotes {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .sticker {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="romanticMusic" loop>
+        <source src="romantic-celebration.mp3" type="audio/mpeg">
+    </audio>
+
+    <a href="index.html" class="back-btn">← Back</a>
+
+    <div class="music-controls">
+        <button class="music-btn" id="musicToggle">🎵</button>
+    </div>
+
+    <div class="stickers-container" id="stickersContainer"></div>
+    <div class="celebration-hearts" id="celebrationHearts"></div>
+
+    <div class="celebration-container">
+        <h1 class="main-title">You Said Yes! ✨</h1>
+        
+        <p class="romantic-message">
+            My heart is dancing with joy! This moment feels like pure magic, 
+            and I'm so grateful you chose to share it with me.
+        </p>
+
+        <div class="love-quotes">
+            <div class="quote">"In all the world, there is no heart for me like yours." 💕</div>
+            <div class="quote">"You are my today and all of my tomorrows." 🌹</div>
+            <div class="quote">"Every love story is beautiful, but ours is my favorite." ❤️</div>
+        </div>
+    </div>
+
+    <script>
+        class CelebrationPage {
+            constructor() {
+                this.music = document.getElementById('romanticMusic');
+                this.musicToggle = document.getElementById('musicToggle');
+                this.isPlaying = false;
+                
+                this.init();
+            }
+
+            init() {
+                this.createRomanticStickers();
+                this.createCelebrationHearts();
+                this.setupMusicControls();
+                this.startCelebration();
+            }
+
+            createRomanticStickers() {
+                const stickersContainer = document.getElementById('stickersContainer');
+                const romanticStickers = [
+                    '💕', '💖', '💗', '💝', '💘', '💞', '💓', '❤️', '🌹', '🌺', 
+                    '🦋', '✨', '💫', '⭐', '🌟', '💐', '🎀', '💎', '👑', '🕊️'
+                ];
+                
+                for (let i = 0; i < 25; i++) {
+                    const sticker = document.createElement('div');
+                    sticker.className = 'sticker';
+                    sticker.textContent = romanticStickers[Math.floor(Math.random() * romanticStickers.length)];
+                    sticker.style.left = Math.random() * 100 + '%';
+                    sticker.style.top = Math.random() * 100 + '%';
+                    sticker.style.animationDelay = Math.random() * 4 + 's';
+                    sticker.style.fontSize = (Math.random() * 2 + 2) + 'rem';
+                    stickersContainer.appendChild(sticker);
+                }
+            }
+
+            createCelebrationHearts() {
+                const heartsContainer = document.getElementById('celebrationHearts');
+                const heartColors = ['#d4af37', '#dc143c', '#ff69b4', '#ff1493', '#ffd700'];
+                
+                for (let i = 0; i < 30; i++) {
+                    const heart = document.createElement('div');
+                    heart.textContent = '❤️';
+                    heart.style.position = 'absolute';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = Math.random() * 100 + '%';
+                    heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+                    heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+                    heart.style.animation = `float ${Math.random() * 3 + 4}s ease-in-out infinite`;
+                    heart.style.animationDelay = Math.random() * 2 + 's';
+                    heart.style.opacity = '0.6';
+                    heartsContainer.appendChild(heart);
+                }
+            }
+
+            setupMusicControls() {
+                this.musicToggle.addEventListener('click', () => {
+                    if (this.isPlaying) {
+                        this.music.pause();
+                        this.musicToggle.textContent = '🎵';
+                        this.isPlaying = false;
+                    } else {
+                        this.music.play().catch(() => {
+                            console.log('Music autoplay blocked');
+                        });
+                        this.musicToggle.textContent = '🔇';
+                        this.isPlaying = true;
+                    }
+                });
+            }
+
+            startCelebration() {
+                // Auto-start music (may be blocked by browser)
+                setTimeout(() => {
+                    this.music.play().catch(() => {
+                        console.log('Autoplay blocked - user can click music button');
+                    });
+                    this.isPlaying = true;
+                    this.musicToggle.textContent = '🔇';
+                }, 1000);
+
+                // Create periodic heart bursts
+                setInterval(() => {
+                    this.createHeartBurst();
+                }, 5000);
+            }
+
+            createHeartBurst() {
+                const colors = ['#d4af37', '#dc143c', '#ff69b4', '#ff1493'];
+                
+                for (let i = 0; i < 10; i++) {
+                    const heart = document.createElement('div');
+                    heart.textContent = '💖';
+                    heart.style.position = 'fixed';
+                    heart.style.left = '50%';
+                    heart.style.top = '50%';
+                    heart.style.fontSize = '2rem';
+                    heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '1000';
+                    heart.style.transition = 'all 2s ease-out';
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Burst animation
+                    setTimeout(() => {
+                        const angle = (i / 10) * 2 * Math.PI;
+                        const distance = 200;
+                        const x = Math.cos(angle) * distance;
+                        const y = Math.sin(angle) * distance;
+                        
+                        heart.style.transform = `translate(${x}px, ${y}px) scale(0)`;
+                        heart.style.opacity = '0';
+                    }, 100);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 2200);
+                }
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new CelebrationPage();
+        });
+    </script>
+</body>
+</html>

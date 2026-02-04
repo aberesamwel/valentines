@@ -333,14 +333,8 @@
             }
 
             handleYesClick() {
-                // Hide question section
-                this.questionSection.classList.add('hidden');
-                
-                // Show message section after delay
-                setTimeout(() => {
-                    this.messageSection.classList.add('visible');
-                    this.createCelebrationHearts();
-                }, 800);
+                // Redirect to celebration page
+                window.location.href = 'celebration.html';
             }
 
             createCelebrationHearts() {
