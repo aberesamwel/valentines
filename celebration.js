@@ -12,6 +12,8 @@ class CelebrationPage {
         this.createCelebrationHearts();
         this.setupMusicControls();
         this.startCelebration();
+        this.createFloatingWords();
+        this.createSparkleEffect();
     }
 
     createRomanticStickers() {
@@ -78,16 +80,17 @@ class CelebrationPage {
             this.musicToggle.textContent = '🔇';
         }, 1000);
 
-        // Create periodic heart bursts
+        // Create periodic heart bursts and teddy bear kisses
         setInterval(() => {
             this.createHeartBurst();
-        }, 5000);
+            this.animateTeddyKiss();
+        }, 4000);
     }
 
     createHeartBurst() {
         const colors = ['#d4af37', '#dc143c', '#ff69b4', '#ff1493'];
         
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 12; i++) {
             const heart = document.createElement('div');
             heart.textContent = '💖';
             heart.style.position = 'fixed';
@@ -103,8 +106,8 @@ class CelebrationPage {
             
             // Burst animation
             setTimeout(() => {
-                const angle = (i / 10) * 2 * Math.PI;
-                const distance = 200;
+                const angle = (i / 12) * 2 * Math.PI;
+                const distance = 250;
                 const x = Math.cos(angle) * distance;
                 const y = Math.sin(angle) * distance;
                 
@@ -116,6 +119,78 @@ class CelebrationPage {
             setTimeout(() => {
                 heart.remove();
             }, 2200);
+        }
+    }
+
+    createFloatingWords() {
+        const romanticWords = [
+            'Forever', 'Beloved', 'Cherished', 'Adored', 'Treasured',
+            'Soulmate', 'Darling', 'Sweetheart', 'Angel', 'Precious',
+            'Beautiful', 'Amazing', 'Perfect', 'Wonderful', 'Magical'
+        ];
+        
+        setInterval(() => {
+            const word = document.createElement('div');
+            word.className = 'floating-word';
+            word.textContent = romanticWords[Math.floor(Math.random() * romanticWords.length)];
+            word.style.left = Math.random() * 100 + '%';
+            word.style.animationDelay = Math.random() * 2 + 's';
+            word.style.fontSize = (Math.random() * 0.5 + 1) + 'rem';
+            
+            document.getElementById('floatingWords').appendChild(word);
+            
+            // Remove after animation
+            setTimeout(() => {
+                word.remove();
+            }, 8000);
+        }, 1500);
+    }
+
+    createSparkleEffect() {
+        const teddyBears = document.querySelector('.teddy-bears');
+        const coupleContainer = document.querySelector('.silhouette-container');
+        
+        setInterval(() => {
+            // Sparkles around teddy bears
+            for (let i = 0; i < 5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle-effect';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 1 + 's';
+                
+                teddyBears.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 2000);
+            }
+            
+            // Sparkles around couple silhouette
+            for (let i = 0; i < 8; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle-effect';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 1 + 's';
+                sparkle.style.background = '#dc143c';
+                
+                coupleContainer.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 2000);
+            }
+        }, 3000);
+    }
+
+    animateTeddyKiss() {
+        const kissHearts = document.querySelector('.kiss-hearts');
+        if (kissHearts) {
+            kissHearts.style.animation = 'none';
+            setTimeout(() => {
+                kissHearts.style.animation = 'floatHearts 2s ease-in-out';
+            }, 10);
         }
     }
 }
